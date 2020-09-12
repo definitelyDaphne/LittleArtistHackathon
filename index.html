@@ -82,10 +82,10 @@
         }
 
         function renderEditor(){
-            /*document.querySelector("pre").innerHTML="";*/
+            document.querySelector("#skulpt--output").innerHTML="";
             var outputCanvas = document.querySelector("#skulpt-canvas--output");
             outputCanvas.querySelectorAll('*').forEach(n => n.remove());
-            
+
             var CM = document.querySelector(".CodeMirror.cm-s-lucario");
             CM.CodeMirror.toTextArea();
             inputRef.value='print("hi")';
