@@ -1,0 +1,15 @@
+{
+  "name": "LittleArtistHackathon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/definitelyDaphne/LittleArtistHackathon.git",
+  "author": "b053040009@gmail.com <b053040009@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "scripts": {
+    "build": "ls py > data"
+  },
+  "heroku-run-build-script": true
+}

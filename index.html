@@ -39,24 +39,21 @@
         </div>
         <div>
             <div class="row justify-content-center mt-2 mb-5">
-                    (&lt;)left and right(&gt;)
+                <button onclick="changeCode(-1)">&lt;</button>
+                (&lt;)left and right(&gt;)
+                <button onclick="changeCode(1)">&gt;</button>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-sm-12 px-4">
                     <form>
 <textarea id="skulpt--input" cols="40" rows="12" name="code">
-import turtle
-          
-t = turtle.Turtle()
-t.forward(100)
-           
-print "Hello World" </textarea><br />
+</textarea><br />
                         <button type="button" id="skulpt_run" onclick="skulptMain()">Run</button>
                     </form>
                     <pre id="skulpt--output"></pre>
                 </div>
                 <div class="col-lg-5 col-sm-12 px-4">
-                    <div height="400" width="400" style="border-style: solid;height:100%;width:100%">
+                    <div id="canvasContainer" height="400" width="400" style="border-style: solid;height:100%;width:100%">
                         <div id="skulpt-canvas--output"></div>
                     </div>
                 </div>
@@ -71,6 +68,52 @@ print "Hello World" </textarea><br />
         var editor;
         const inputRef = document.getElementById("skulpt--input");
         const outputRef = document.getElementById("skulpt--output");
+        let filenameArr = []
+
+        function removeElement(array, elem) {
+                var index = array.indexOf(elem);
+                if (index > -1) {
+                    array.splice(index, 1);
+                }
+            }
+        
+        function changeCode(step){
+            renderEditor();
+        }
+
+        function renderEditor(){
+            /*document.querySelector("pre").innerHTML="";*/
+            var outputCanvas = document.querySelector("#skulpt-canvas--output");
+            outputCanvas.querySelectorAll('*').forEach(n => n.remove());
+            
+            var CM = document.querySelector(".CodeMirror.cm-s-lucario");
+            CM.CodeMirror.toTextArea();
+            inputRef.value='print("hi")';
+            makeEditorFromText();
+        }
+
+        function makeEditorFromText(){
+            editor = CodeMirror.fromTextArea(document.getElementById("skulpt--input"), {
+                lineNumbers: true,
+                indentUnit: 4,
+                styleActiveLine: true,
+                matchBrackets: true,
+                theme: "lucario",
+                htmlMode: true,
+
+                mode: {
+                    name: "javascript"
+                }
+            });
+        }
+
+        /*fetch('py/daphne.py')
+            .then(response => response.text())
+            .then(data => {console.log(data);inputRef.value=data});*/
+        
+        fetch('data')
+                .then(response => response.text())
+            .then(data => { filenameArr = data.toString().split("\n");removeElement(filenameArr,"");console.log(filenameArr)});
 
         function skulptMain() {
             outputRef.innerHTML = "";
@@ -100,18 +143,10 @@ print "Hello World" </textarea><br />
         }
 
         window.onload = function(){
-            editor = CodeMirror.fromTextArea(document.getElementById("skulpt--input"), {
-                lineNumbers: true,
-                indentUnit: 4,
-                styleActiveLine: true,
-                matchBrackets: true,
-                theme: "lucario",
-                htmlMode: true,
-
-                mode: {
-                    name: "javascript"
-                }
-            });
+            fetch('py/daphne.py')
+            .then(response => response.text())
+            .then(data => {console.log(data);inputRef.value=data});
+            makeEditorFromText();
         };
         
     </script>
