@@ -1,3 +1,4 @@
+###index 0
 import turtle
 
 t = turtle.Turtle()

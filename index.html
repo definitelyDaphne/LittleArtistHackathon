@@ -40,7 +40,7 @@
         <div>
             <div class="row justify-content-center mt-2 mb-5">
                 <button onclick="changeCode(-1)">&lt;</button>
-                (&lt;)left and right(&gt;)
+                <span id="py-description">basic.py</span>
                 <button onclick="changeCode(1)">&gt;</button>
             </div>
             <div class="row justify-content-center">
@@ -68,7 +68,9 @@
         var editor;
         const inputRef = document.getElementById("skulpt--input");
         const outputRef = document.getElementById("skulpt--output");
-        let filenameArr = []
+        let filenameArr = [];
+        let currIndex=0;
+        const arrayLen = filenameArr.length;
 
         function removeElement(array, elem) {
                 var index = array.indexOf(elem);
@@ -78,6 +80,7 @@
             }
         
         function changeCode(step){
+            currIndex += step;
             renderEditor();
         }
 
@@ -88,8 +91,9 @@
 
             var CM = document.querySelector(".CodeMirror.cm-s-lucario");
             CM.CodeMirror.toTextArea();
-            inputRef.value='print("hi")';
-            makeEditorFromText();
+            fetch(`py/${filenameArr[(currIndex+arrayLen)%3]}`)
+                .then(response => response.text())
+                .then(data => { console.log(data); inputRef.value = data; makeEditorFromText();document.getElementById("py-description").innerHTML= filenameArr[(currIndex + arrayLen) % 3]});
         }
 
         function makeEditorFromText(){
@@ -143,7 +147,7 @@
         }
 
         window.onload = function(){
-            fetch('py/daphne.py')
+            fetch(`py/basic.py`)
             .then(response => response.text())
             .then(data => {console.log(data);inputRef.value=data});
             makeEditorFromText();
