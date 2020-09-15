@@ -31,7 +31,7 @@
             <div class="col-lg-5 align-self-center col-sm-12">
                 <div class="row justify-content-between py-4 px-4">
                     <div class="col">
-                        <a class="link">How to Contribute</a>
+                        <a class="link" href="#modal">How to Contribute</a>
                     </div>
                     <div class="col">
                         <a class="link" target="_blank" href="https://github.com/definitelyDaphne/LittleArtistHackathon">Github Repo</a>
@@ -50,7 +50,7 @@
                     <form>
 <textarea id="skulpt--input" cols="40" rows="12" name="code">
 </textarea><br />
-                        <button type="button" id="skulpt_run" onclick="skulptMain()">Run</button>
+                        <button type="button" id="skulpt_run" class="styleBtn" onclick="skulptMain()">Run</button>
                     </form>
                     <pre id="skulpt--output"></pre>
                 </div>
@@ -62,7 +62,28 @@
             </div>
 
         </div>
-        
+
+        <div id="modal">
+            <div id="close_btn_container">
+                <a href="#" id="closeBtn"><button type="button" class="styleBtn">X</button></a>
+            </div>
+            <div class="modal__window">
+                <!-- <h2>Show me what you got !</h2><br /> -->
+                <div style="display:flex;justify-content:center">
+                    <img width="420" src="https://media.giphy.com/media/26DOs997h6fgsCthu/giphy.gif">
+                </div>
+                <p><a href="https://giphy.com/gifs/rickandmorty-season-2-adult-swim-rick-and-morty-iibEPf8xEDTedJcDJr">via GIPHY</a></p>
+                <h4>☞ STEP 1 :</h4>
+                <p>Save your code as Python file with extension <strong>.py</strong></p>
+                <h4>☞ STEP 2 :</h4>
+                <p>Go to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfL3UA7t_GkdZaQ4vU7J6qEoS8BMIop9tthGX_uCsfTkT8ghg/viewform">This Google Form</a> fill out your name and attach the file </p>
+                <h4>☞ STEP 3 :</h4>
+                <p>Wait for your art work to be uploaded to the website by admin</p>
+                <h4>Note :</h4>
+                <p>For programmer who love Git...<br />Feel free to fork the project, modify it and make a PR back to the project <span style="font-size: 1.5em;vertical-align: middle;">☺</span></p>
+                <br/><br />
+            </div>
+        </div>
     
     
     </div>
