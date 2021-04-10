@@ -79,8 +79,6 @@
                 <p>Go to <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfL3UA7t_GkdZaQ4vU7J6qEoS8BMIop9tthGX_uCsfTkT8ghg/viewform">This Google Form</a> fill out your name and attach the file </p>
                 <h4>☞ STEP 3 :</h4>
                 <p>Wait for your art work to be uploaded to the website by admin</p>
-                <h4>Note :</h4>
-                <p>For programmer who love Git...<br />Feel free to fork the project, modify it and make a PR back to the project <span style="font-size: 1.5em;vertical-align: middle;">☺</span></p>
                 <br/><br />
             </div>
         </div>
@@ -106,7 +104,6 @@
         let filenameArr = [];
         let currIndex=0;
 
-
         function removeElement(array, elem) {
                 var index = array.indexOf(elem);
                 if (index > -1) {
@@ -126,14 +123,15 @@
 
             var CM = document.querySelector(".CodeMirror.cm-s-lucario");
             CM.CodeMirror.toTextArea();
-            console.log(currIndex)
+            /*console.log(currIndex)
             console.log(filenameArr)
             console.log(filenameArr[1])
             console.log((currIndex + filenameArr.length) % 3)
-            console.log(filenameArr.length)
-            fetch(`py/${filenameArr[(currIndex+filenameArr.length*1000)%3]}`)
+            console.log(filenameArr.length)*/
+            const FILE_NUM = filenameArr.length;
+            fetch(`py/${filenameArr[(currIndex+FILE_NUM*1000)% FILE_NUM]}`)
                 .then(response => response.text())
-                .then(data => { console.log(data); inputRef.value = data; makeEditorFromText();document.getElementById("py-description").innerHTML= filenameArr[(currIndex + filenameArr.length*1000) % 3]});
+                .then(data => { console.log(data); inputRef.value = data; makeEditorFromText();document.getElementById("py-description").innerHTML= filenameArr[(currIndex + FILE_NUM*1000) % FILE_NUM]});
         }
 
         function makeEditorFromText(){
@@ -150,14 +148,6 @@
                 }
             });
         }
-
-        /*fetch('py/daphne.py')
-            .then(response => response.text())
-            .then(data => {console.log(data);inputRef.value=data});*/
-        
-        /*fetch('data')
-                .then(response => response.text())
-            .then(data => { filenameArr = data.toString().split("\n");removeElement(filenameArr,"");console.log(filenameArr)});*/
 
         function skulptMain() {
             outputRef.innerHTML = "";
